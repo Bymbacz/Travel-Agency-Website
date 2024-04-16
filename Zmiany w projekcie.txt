@@ -1,0 +1,14 @@
+Co nowego:
+-Resolver Hisorii zakupów
+-Resolver wycieczek
+-dodano koszyk do Firebase
+-dodano system komentarzy
+-AuthGuardy
+-logowanie
+-Admin View
+-prawie całe laboratoria 6.
+-dzialanie historii
+-filtry w historii
+-zmiana systemu dodawania wycieczek
+
+-filtry w liscie (sa, ale nie dzialaja filtry)

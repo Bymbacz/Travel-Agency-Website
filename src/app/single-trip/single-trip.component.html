@@ -1,0 +1,127 @@
+<a routerLink="../../trips" routerLinkActive="active"
+  >Wróć do widoku wycieczek</a
+>
+
+<div
+  *ngIf="trip"
+  class="trip-container"
+  [ngStyle]="{
+    background: trip.capacity <= 3 ? 'rgb(0, 153, 255)' : '',
+    color: trip.capacity <= 3 ? 'rgb(175, 0, 0)' : ''
+  }"
+>
+  <h1 class="title">{{ trip.title | uppercase }}</h1>
+  <p class="details">{{ trip.details }}</p>
+  <p class="country">{{ trip.country | uppercase }}</p>
+  <h3>{{ trip.value | currency : "EUR" : "symbol" : "1.0-0" }}</h3>
+  <p class="dates">{{ trip.start }} - {{ trip.end }}</p>
+  <p class="capacity" *ngIf="trip.capacity > 0">
+    Ilość wolnych miejsc: {{ trip.capacity - trip.yoursRes }} /
+    {{ trip.max_capacity }}
+  </p>
+  <p class="capacity" *ngIf="trip.capacity == 0">Brak wolych miejsc</p>
+  <p>Zarezerwowano: {{ trip.yoursRes }}</p>
+  <div class="buttons">
+    <button
+      type="button"
+      class="add_sub"
+      [ngStyle]="{
+        display: trip.capacity - trip.yoursRes == 0 ? 'none' : 'block'
+      }"
+      (click)="plusClick(trip)"
+    >
+      +
+    </button>
+    <button
+      type="button"
+      class="minus_sub"
+      [ngStyle]="{
+        display: trip.yoursRes == 0 ? 'none' : 'block'
+      }"
+      (click)="minusClick(trip)"
+    >
+      -
+    </button>
+  </div>
+
+  <div *ngIf="authService.userRoles.manager == false" class="ocena">
+    <ngx-star-rating id="rating+{{ trip.id }}"></ngx-star-rating>
+  </div>
+</div>
+
+<div
+  style="width: 80%; text-align: center; margin-left: auto; margin-right: auto"
+>
+  <ng-image-slider
+    [images]="images"
+    [imagePopup]="true"
+    [imageSize]="{ width: '100%', height: '600px' }"
+    [infinite]="true"
+    #nav
+  ></ng-image-slider>
+</div>
+
+<hr style="width: 90%; text-align: center" />
+<h2 style="text-align: center">OPINIE!!!</h2>
+<hr style="width: 90%; text-align: center" />
+
+<div id="form-rev" *ngIf="authService.userRoles.banned != true">
+  <div [hidden]="submitted">
+    <h2>Dodaj nowy komentarz</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="Form">
+      <div class="form-group">
+        <label for="data">Kiedy brałeś udział w wycieczce (opcjonalne)</label>
+        <div>
+          <input
+            type="date"
+            class="form-control"
+            id="data"
+            required
+            [(ngModel)]="rev.date"
+            [max]="currDate"
+            name="data"
+            formControlName="date"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="data">Komentarz</label>
+        <div>
+          <textarea
+            rows="5"
+            name="content"
+            [(ngModel)]="rev.content"
+            type="text"
+            required
+            id="content"
+            placeholder="Komentarz"
+            class="form-control"
+            formControlName="content"
+          ></textarea>
+          <span *ngIf="content && content.invalid" style="color: red"
+            >Komentarz ma zawierać od 50 do 500 znaków</span
+          >
+        </div>
+      </div>
+
+      <input type="submit" class="btn btn-success" value="Wyślij" />
+    </form>
+  </div>
+
+  <div [hidden]="!submitted">
+    <h4>Komentarz został dodany prawidłowo</h4>
+    <button class="btn btn-success" (click)="newReview()">Dodaj</button>
+  </div>
+</div>
+
+<div *ngFor="let r of reviews | async">
+  <div *ngIf="r.id == goodID()" class="comment">
+    <div class="who">
+      <div>{{ r.nick }}</div>
+      <div>{{ r.date }}</div>
+    </div>
+
+    <div>{{ r.content }}</div>
+  </div>
+</div>

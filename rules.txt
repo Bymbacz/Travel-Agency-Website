@@ -1,0 +1,32 @@
+{
+  "rules": {
+    "trips": {
+      ".read": true,
+      ".write": "root.child('users').child(auth.uid).child('role').child('manager').val() === true || root.child('users').child(auth.uid).child('role').child('admin').val() === true"
+    },
+    "map":{
+      ".read":true,
+      ".write":"root.child('users').child(auth.uid).child('role').child('manager').val() === true || root.child('users').child(auth.uid).child('role').child('admin').val() === true"
+    },
+    "history":{
+      ".read":"root.child('users').child(auth.uid).child('role').child('guest').val() === false",
+      ".write":"root.child('users').child(auth.uid).child('role').child('guest').val() === false"
+    },
+    "users":{
+    		".read":true,
+        ".write":true
+    },
+    "basket":{
+    		".read":"root.child('users').child(auth.uid).child('role').child('guest').val() === false",
+        ".write":"root.child('users').child(auth.uid).child('role').child('guest').val() === false"
+    },
+    "persistence":{
+      ".read":true,
+      ".write":"root.child('users').child(auth.uid).child('role').child('admin').val() === true"
+    },
+    "reviews":{
+      ".read": "root.child('users').child(auth.uid).child('role').child('guest').val() === false",
+      ".write": "root.child('users').child(auth.uid).child('role').child('banned').val() === false || root.child('users').child(auth.uid).child('role').child('guest').val() === false"
+    }
+  }
+}

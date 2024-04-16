@@ -1,0 +1,147 @@
+<div class="nav">
+  <ul class="menu">
+    <li>
+      <a routerLink="main" routerLinkActive="active">WIZYTÓWKA</a>
+    </li>
+    <li><a routerLink="trips" routerLinkActive="active">WYCIECZKI</a></li>
+    <li
+      *ngIf="
+        authService.userRoles.manager == true ||
+        authService.userRoles.admin == true
+      "
+    >
+      <a routerLink="add" routerLinkActive="active">DODAJ</a>
+    </li>
+    <li *ngIf="authService.userRoles.guest != true">
+      <a routerLink="history" routerLinkActive="active">HISTORIA</a>
+    </li>
+    <li *ngIf="authService.userRoles.guest != true">
+      <div class="row">
+        <a routerLink="basket" routerLinkActive="active"
+          ><i class="icon-basket"></i
+        ></a>
+        <div class="col">
+          Ilość wycieczek w koszyku: {{ getNumOfElements() }} <br />
+          Wartość:
+          {{ getSum() | currency : "EUR" }}
+        </div>
+      </div>
+    </li>
+    <li *ngIf="authService.userRoles.guest != true">
+      <a
+        routerLink="clientDashboard"
+        routerLinkActive="active"
+        style="align-items: center; text-align: center"
+      >
+        <i class="icon-user"></i>
+        <label
+          style="
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: normal;
+            margin: 0px;
+          "
+          >PROFIL</label
+        >
+      </a>
+    </li>
+    <li>
+      <a
+        routerLink="login"
+        *ngIf="authService.userRoles.guest == true"
+        routerLinkActive="active"
+      >
+        <div class="col">
+          <label style="font-size: 17px; cursor: pointer; font-weight: normal"
+            >LOGOWANIE</label
+          >
+          <label style="font-size: 17px; cursor: pointer; font-weight: normal"
+            >REJESTRACJA</label
+          >
+        </div>
+      </a>
+      <div *ngIf="authService.userRoles.guest == false" class="row">
+        <div class="col">
+          <label class="nick">{{ authService.userData.email }}</label>
+          <label class="signout" (click)="authService.SignOut()"
+            >WYLOGUJ SIĘ</label
+          >
+        </div>
+      </div>
+    </li>
+    <li *ngIf="authService.userRoles.admin == true">
+      <a><i class="icon-bell-alt"></i></a>
+    </li>
+  </ul>
+
+  <div class="hamburger">
+    <input type="checkbox" id="hamburger-id" />
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <nav class="mobile-navbar">
+      <ul class="mobile-menu">
+        <li><a routerLink="main" routerLinkActive="active">WIZYTÓWKA</a></li>
+        <li><a routerLink="trips" routerLinkActive="active">WYCIECZKI</a></li>
+        <li
+          *ngIf="
+            authService.userRoles.manager == true ||
+            authService.userRoles.admin == true
+          "
+        >
+          <a routerLink="add" routerLinkActive="active">DODAJ</a>
+        </li>
+        <li *ngIf="authService.userRoles.guest != true">
+          <a routerLink="history" routerLinkActive="active">HISTORIA</a>
+        </li>
+        <li *ngIf="authService.userRoles.guest != true">
+          <div class="row">
+            <a routerLink="basket" routerLinkActive="active"
+              ><i class="icon-basket"></i
+            ></a>
+            <div class="col">
+              Ilość wycieczek w koszyku: {{ getNumOfElements() }} <br />
+              Wartość:
+              {{ getSum() | currency : "EUR" }}
+            </div>
+          </div>
+        </li>
+        <li *ngIf="authService.userRoles.guest != true">
+          <a routerLink="clientDashboard" routerLinkActive="active">
+            <i class="icon-user"></i>
+            PROFIL
+          </a>
+        </li>
+        <li>
+          <a
+            routerLink="login"
+            *ngIf="authService.userRoles.guest == true"
+            routerLinkActive="active"
+          >
+            <div class="col">
+              <label
+                style="font-size: 17px; cursor: pointer; font-weight: normal"
+                >LOGOWANIE</label
+              >
+              <label
+                style="font-size: 17px; cursor: pointer; font-weight: normal"
+                >REJESTRACJA</label
+              >
+            </div>
+          </a>
+          <div *ngIf="authService.userRoles.guest == false" class="row">
+            <div class="col">
+              <label class="nick">{{ authService.userData.email }}</label>
+              <label class="signout" (click)="authService.SignOut()"
+                >WYLOGUJ SIĘ</label
+              >
+            </div>
+          </div>
+        </li>
+        <li *ngIf="authService.userRoles.admin == true">
+          <a><i class="icon-bell-alt"></i></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

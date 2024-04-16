@@ -1,0 +1,35 @@
+<div class="view">
+  <h1>Stwórz nowe konto</h1>
+  <form [formGroup]="Form">
+    <div>
+      <input
+        type="email"
+        id="login"
+        name="login"
+        formControlName="login"
+        placeholder="Login (e-mail)"
+        required
+      />
+    </div>
+    <div>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        formControlName="password"
+        placeholder="Hasło"
+      />
+    </div>
+    <div>
+      <label style="font-size: 18px">Wybierz role: </label>
+      <select id="role" formControlName="role">
+        <option value="client">client</option>
+        <option value="admin">admin</option>
+        <option value="manager">manager</option>
+      </select>
+    </div>
+  </form>
+  <input type="submit" (click)="register()" value="Sign Up" />
+  <p *ngIf="showError">Wprowadź poprawne dane!</p>
+</div>

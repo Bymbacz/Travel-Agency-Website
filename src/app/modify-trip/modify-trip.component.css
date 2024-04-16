@@ -1,0 +1,31 @@
+.btn {
+  margin: 10px;
+}
+
+input {
+  padding: 7px;
+  margin: 5px 5px 10px 5px;
+  font-size: 15px;
+  border: 1px solid black;
+}
+
+label {
+  padding: 7px;
+  font-size: 15px;
+}
+
+textarea {
+  padding: 7px;
+  margin: 5px 5px 10px 5px;
+  font-size: 15px;
+  border: 1px solid black;
+  width: 90%;
+}
+#form-trip {
+  width: 50%;
+  height: auto;
+  padding: 10px;
+  margin: 10px auto;
+  background-color: rgba(128, 128, 0, 0.59);
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
+}

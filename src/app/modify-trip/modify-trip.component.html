@@ -1,0 +1,161 @@
+<div id="form-trip">
+  <h2 style="text-align: center">Modyfikuj wycieczkę</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nazwa wycieczki</label>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          required
+          [(ngModel)]="trip.title"
+          name="title"
+          placeholder="Tytul"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="country">Kraj</label>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          id="country"
+          required
+          [(ngModel)]="trip.country"
+          name="country"
+          placeholder="Kraj"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="details">Opis</label>
+      <div>
+        <textarea
+          rows="5"
+          name="details"
+          [(ngModel)]="trip.details"
+          type="text"
+          required
+          id="details"
+          placeholder="Komentarz"
+          class="form-control"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="start">Początek wycieczki</label>
+      <div>
+        <input
+          type="date"
+          class="form-control"
+          id="start"
+          required
+          [(ngModel)]="trip.start"
+          name="start"
+          placeholder="Początek wycieczki"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="end">Koniec wycieczki</label>
+      <div>
+        <input
+          type="date"
+          class="form-control"
+          id="end"
+          required
+          [(ngModel)]="trip.end"
+          name="end"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="value">Cena</label>
+      <div>
+        <input
+          type="number"
+          class="form-control"
+          id="value"
+          required
+          [(ngModel)]="trip.value"
+          name="value"
+          placeholder="Cena"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="max_capacity">Maksymalna ilość osób:</label>
+      <div>
+        <input
+          type="number"
+          class="form-control"
+          id="max_capacity"
+          required
+          [(ngModel)]="trip.max_capacity"
+          name="max_capacity"
+          placeholder="Maks ilość uczestników"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="link">Ścieżka do zdjęcia*</label>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          id="link"
+          required
+          [(ngModel)]="trip.link"
+          name="link"
+          placeholder="Link do zdjęcia*"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="link2">Ścieżka do zdjęcia 2*</label>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          id="link2"
+          [(ngModel)]="trip.image1"
+          name="link2"
+          required
+          placeholder="Inne zdjęcie*"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="link">Ścieżka do zdjęcia 3*</label>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          id="link3"
+          [(ngModel)]="trip.image2"
+          name="link3"
+          required
+          placeholder="Już ostatnie zdjęcie*"
+        />
+      </div>
+    </div>
+
+    <p>
+      *(ZALECANE) Mozna podac sciezke z internetu, PPM na zdjecie w wyszukiwarce
+      googla -> "Kopiuj adres obrazu"
+    </p>
+
+    <input type="submit" class="btn btn-success" value="Zapisz" />
+  </form>
+</div>

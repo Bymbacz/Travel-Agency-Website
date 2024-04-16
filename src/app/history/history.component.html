@@ -1,0 +1,57 @@
+<div class="page">
+  <div class="left">
+    <label>
+      <input type="checkbox" checked (change)="future = !future" />Oczekujące na
+      rozpoczęcie</label
+    >
+    <label>
+      <input type="checkbox" checked (change)="now = !now" />Aktywne</label
+    >
+    <label>
+      <input type="checkbox" checked (change)="past = !past" />Archiwalne</label
+    >
+  </div>
+  <div class="right">
+    <div [hidden]="!future">
+      <h2>Oczekujące na rozpoczęcie</h2>
+      <div *ngFor="let h of His">
+        <div *ngIf="h.start > currDate" class="trip-container">
+          <p class="country">{{ h.country | uppercase }}</p>
+          <p>{{ h.price | currency : "EUR" : "symbol" : "1.0-0" }}</p>
+          <p class="dates">{{ h.start }} - {{ h.end }}</p>
+          <p class="dates">Data Zakupu: {{ h.buyDate }}</p>
+          <p class="max_capacity">Liczba biletów: {{ h.numOfTickets }}</p>
+        </div>
+      </div>
+      <hr />
+    </div>
+    <div [hidden]="!now">
+      <h2>Aktywne</h2>
+      <div *ngFor="let h of His">
+        <div
+          *ngIf="h.start <= currDate && h.end >= currDate"
+          class="trip-container"
+        >
+          <p class="country">{{ h.country | uppercase }}</p>
+          <p>{{ h.price | currency : "EUR" : "symbol" : "1.0-0" }}</p>
+          <p class="dates">{{ h.start }} - {{ h.end }}</p>
+          <p class="dates">Data Zakupu: {{ h.buyDate }}</p>
+          <p class="max_capacity">Liczba biletów: {{ h.numOfTickets }}</p>
+        </div>
+      </div>
+      <hr />
+    </div>
+    <div [hidden]="!past">
+      <h2>Archiwalne</h2>
+      <div *ngFor="let h of His">
+        <div *ngIf="h.end < currDate" class="trip-container">
+          <p class="country">{{ h.country | uppercase }}</p>
+          <p>{{ h.price | currency : "EUR" : "symbol" : "1.0-0" }}</p>
+          <p class="dates">{{ h.start }} - {{ h.end }}</p>
+          <p class="dates">Data Zakupu: {{ h.buyDate }}</p>
+          <p class="max_capacity">Liczba biletów: {{ h.numOfTickets }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

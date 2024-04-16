@@ -1,0 +1,62 @@
+<div id="all">
+  <h1>Zarządzanie aplikacją</h1>
+  <h2>Tryb persystencji stanu logowania: {{ selectedPersistence }}</h2>
+  <div class="inline">
+    <label>Wybierz tryb persystencji logowania: </label>
+    <select
+      [(ngModel)]="selectedPersistence"
+      (ngModelChange)="chosePersistence()"
+    >
+      <option>local</option>
+      <option>session</option>
+      <option>none</option>
+    </select>
+  </div>
+  <hr />
+  <h3>Zarządzanie użytkownikami:</h3>
+  <h4>
+    Uwaga, zabranie użytkownikowi wszystkich ról, działa jak usunięcie go z
+    systemu
+  </h4>
+  <div
+    style="
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    "
+    *ngFor="let user of users"
+  >
+    <div class="userInfo">
+      <p>Email: {{ user.email }}</p>
+      <div class="Buttons">
+        <button
+          (click)="setRole(user.id, 'banned', !user.role.banned)"
+          [ngClass]="{ 'has-role': user.role.banned == true }"
+        >
+          Zbanowany
+        </button>
+        <button
+          (click)="setRole(user.id, 'manager', !user.role.manager)"
+          [ngClass]="{ 'has-role': user.role.manager == true }"
+        >
+          Manager
+        </button>
+        <button
+          (click)="setRole(user.id, 'admin', !user.role.admin)"
+          [ngClass]="{ 'has-role': user.role.admin == true }"
+        >
+          Administrator
+        </button>
+        <button
+          (click)="setRole(user.id, 'client', !user.role.client)"
+          [ngClass]="{ 'has-role': user.role.client == true }"
+        >
+          Klient
+        </button>
+      </div>
+    </div>
+    <hr />
+  </div>
+</div>

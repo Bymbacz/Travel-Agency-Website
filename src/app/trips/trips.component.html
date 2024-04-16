@@ -1,0 +1,67 @@
+<div class="page">
+  <app-filter-trips></app-filter-trips>
+  <div id="box">
+    <div
+      *ngFor="let trip of Trips"
+      class="trip-container"
+      [ngStyle]="{
+        background:
+          trip.data.capacity <= 3
+            ? 'rgb(154, 205, 50)'
+            : trip.data.value == getMin()
+            ? 'rgb(141, 189, 57)'
+            : '',
+        border:
+          trip.data.value == getMin()
+            ? '5px solid green'
+            : trip.data.value == getMax()
+            ? '5px solid red'
+            : ''
+      }"
+    >
+      <a routerLink="{{ trip.data.id }}" routerLinkActive="active"
+        ><img src="{{ trip.data.link }}"
+      /></a>
+      <h2 class="title">{{ trip.data.title | uppercase }}</h2>
+      <p class="details">{{ trip.data.details }}</p>
+      <p class="country">{{ trip.data.country | uppercase }}</p>
+      <h3>{{ trip.data.value | currency : "EUR" : "symbol" : "1.0-0" }}</h3>
+      <p class="dates">{{ trip.data.start }} - {{ trip.data.end }}</p>
+      <p class="capacity" *ngIf="trip.data.capacity > 0">
+        Ilość wolnych miejsc: {{ trip.data.capacity - trip.data.yoursRes }} /
+        {{ trip.data.max_capacity }}
+      </p>
+      <p class="capacity" *ngIf="trip.data.capacity == 0">Brak wolych miejsc</p>
+      <p class="res">Zarezerwowano: {{ trip.data.yoursRes }}</p>
+      <div class="buttons" *ngIf="authService.userRoles.guest == false">
+        <button
+          *ngIf="
+            trip.data.capacity > 0 &&
+            trip.data.capacity - trip.data.yoursRes > 0
+          "
+          type="button"
+          class="add_sub"
+          (click)="plusClick(trip)"
+        >
+          +
+        </button>
+        <button
+          *ngIf="trip.data.yoursRes > 0"
+          type="button"
+          class="minus_sub"
+          (click)="minusClick(trip)"
+        >
+          -
+        </button>
+      </div>
+      <div style="clear: both"></div>
+      <div
+        *ngIf="authService.userRoles.guest == false"
+        id="reserved"
+        [ngStyle]="{ background: reserved() > 10 ? 'green' : '' }"
+      >
+        Ilość zarezerwowanych wycieczek: {{ reserved() }}
+      </div>
+    </div>
+  </div>
+</div>

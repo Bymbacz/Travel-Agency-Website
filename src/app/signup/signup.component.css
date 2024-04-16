@@ -1,0 +1,21 @@
+.view {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 50px;
+  border: 0.5px solid gray;
+  margin: 10px;
+}
+
+select {
+  padding: 10px;
+  font-size: 18px;
+  border: 0.5px solid gray;
+  margin: 10px;
+}

@@ -1,0 +1,220 @@
+<div id="form-trip">
+  <h2 style="text-align: center">Dodaj wycieczkę</h2>
+  <form (ngSubmit)="onSubmit()" [hidden]="submitted">
+    <div class="form-group">
+      <label for="name">Nazwa wycieczki</label>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          required
+          [(ngModel)]="trip.title"
+          name="title"
+          placeholder="Tytul"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="country">Kraj</label>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          id="country"
+          required
+          [(ngModel)]="trip.country"
+          name="country"
+          placeholder="Kraj"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="details">Opis</label>
+      <div>
+        <textarea
+          rows="5"
+          name="details"
+          [(ngModel)]="trip.details"
+          type="text"
+          required
+          id="details"
+          placeholder="Komentarz"
+          class="form-control"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="start">Początek wycieczki</label>
+      <div>
+        <input
+          type="date"
+          class="form-control"
+          id="start"
+          required
+          [(ngModel)]="trip.start"
+          name="start"
+          placeholder="Początek wycieczki"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="end">Koniec wycieczki</label>
+      <div>
+        <input
+          type="date"
+          class="form-control"
+          id="end"
+          required
+          [(ngModel)]="trip.end"
+          name="end"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="value">Cena</label>
+      <div>
+        <input
+          type="number"
+          class="form-control"
+          id="value"
+          required
+          [(ngModel)]="trip.value"
+          name="value"
+          placeholder="Cena"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="max_capacity">Maksymalna ilość osób:</label>
+      <div>
+        <input
+          type="number"
+          class="form-control"
+          id="max_capacity"
+          required
+          [(ngModel)]="trip.max_capacity"
+          name="max_capacity"
+          placeholder="Maks ilość uczestników"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="link">Ścieżka do zdjęcia*</label>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          id="link"
+          required
+          [(ngModel)]="trip.link"
+          name="link"
+          placeholder="Link do zdjęcia*"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="link2">Ścieżka do zdjęcia 2*</label>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          id="link2"
+          [(ngModel)]="trip.image1"
+          name="link2"
+          required
+          placeholder="Inne zdjęcie*"
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="link">Ścieżka do zdjęcia 3*</label>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          id="link3"
+          [(ngModel)]="trip.image2"
+          name="link3"
+          required
+          placeholder="Już ostatnie zdjęcie*"
+        />
+      </div>
+    </div>
+
+    <p>
+      *(ZALECANE) Mozna podac sciezke z internetu, PPM na zdjecie w wyszukiwarce
+      googla -> "Kopiuj adres obrazu"
+    </p>
+
+    <input type="submit" class="btn btn-success" value="Wyślij" />
+  </form>
+
+  <div [hidden]="!submitted">
+    <button class="btn btn-success" (click)="newTrip()">Dodaj wycieczkę</button>
+  </div>
+</div>
+
+<hr />
+
+<div id="box">
+  <div
+    *ngFor="let trip of Trips | async"
+    class="trip-container"
+    [ngStyle]="{
+      background:
+        trip.data.capacity <= 3
+          ? 'rgb(154, 205, 50)'
+          : trip.data.value == getMin()
+          ? 'rgb(141, 189, 57)'
+          : '',
+      border:
+        trip.data.value == getMin()
+          ? '5px solid green'
+          : trip.data.value == getMax()
+          ? '5px solid red'
+          : ''
+    }"
+  >
+    <img src="{{ trip.data.link }}" />
+    <h2 class="title">{{ trip.data.title | uppercase }}</h2>
+    <p class="details">{{ trip.data.details }}</p>
+    <p class="country">{{ trip.data.country | uppercase }}</p>
+    <h3>{{ trip.data.value | currency : "EUR" : "symbol" : "1.0-0" }}</h3>
+    <p class="dates">{{ trip.data.start }} - {{ trip.data.end }}</p>
+    <p class="capacity" *ngIf="trip.data.capacity > 0">
+      Ilość wolnych miejsc: {{ trip.data.capacity - trip.data.yoursRes }} /
+      {{ trip.data.max_capacity }}
+    </p>
+    <p class="capacity" *ngIf="trip.data.capacity == 0">Brak wolych miejsc</p>
+
+    <div class="buttons">
+      <a routerLink="{{ trip.data.id }}" class="Modify"> Modyfikuj </a>
+    </div>
+    <div style="clear: both"></div>
+    <p>
+      <button
+        type="button"
+        class="delBtn"
+        (click)="deleteTrip(trip.key)"
+        [ngStyle]="{
+          'border-top-right-radius':
+            trip.data.value == getMin() || trip.data.value == getMax()
+              ? '15px'
+              : '20px'
+        }"
+      >
+        X
+      </button>
+    </p>
+  </div>
+</div>

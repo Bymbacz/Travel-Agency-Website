@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Filtry:</h1>
+
+  <label for="country">Kraj: </label>
+  <input type="text" id="country" [(ngModel)]="filter.country" />
+
+  <label for="startDate">Start date: </label>
+  <input type="text" id="startDate" [(ngModel)]="filter.startdate" />
+
+  <label for="endDate">End date: </label>
+  <input type="text" id="endDate" [(ngModel)]="filter.enddate" />
+
+  <label for="minPrice">Minimum price: {{ filter.min }}</label>
+  <input
+    type="range"
+    id="minPrice"
+    [min]="getMin()"
+    [max]="getMax()"
+    [(ngModel)]="filter.min"
+  />
+
+  <label for="maxPrice">Maximum price: {{ filter.max }}</label>
+  <input
+    type="range"
+    id="maxPrice"
+    [min]="getMin()"
+    [max]="getMax()"
+    [(ngModel)]="filter.max"
+  />
+</div>

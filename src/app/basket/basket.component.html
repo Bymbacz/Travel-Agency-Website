@@ -1,0 +1,11 @@
+<div id="box">
+  <div *ngFor="let trip of Trips | async" class="trip-container">
+    <h2 class="title">{{ trip.data.title | uppercase }}</h2>
+    <p class="country">{{ trip.data.country | uppercase }}</p>
+    <h3>{{ trip.data.value | currency : "EUR" : "symbol" : "1.0-0" }}</h3>
+    <p class="dates">{{ trip.data.start }} - {{ trip.data.end }}</p>
+    <p class="dates">Bilety: {{ trip.data.numOfTickets }}</p>
+    <button type="button" class="buy" (click)="buy(trip)">Kup</button>
+    <div style="clear: both"></div>
+  </div>
+</div>

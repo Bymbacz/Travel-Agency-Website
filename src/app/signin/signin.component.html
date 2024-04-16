@@ -1,0 +1,33 @@
+<div class="view">
+  <h1>Zaloguj się na swoje konto</h1>
+  <form [formGroup]="Form">
+    <div>
+      <input
+        type="email"
+        id="login"
+        name="login"
+        formControlName="login"
+        placeholder="Login (e-mail)"
+        required
+      />
+    </div>
+    <div>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        formControlName="password"
+        placeholder="Hasło"
+      />
+    </div>
+  </form>
+  <input type="submit" (click)="login()" value="Sign In" />
+  <p *ngIf="showError">Wprowadź poprawne dane!</p>
+  <br />
+  <br />
+  <h2>
+    Nie masz konta?
+    <a routerLink="../register" routerLinkActive="active">Kliknij tutaj</a>
+  </h2>
+</div>

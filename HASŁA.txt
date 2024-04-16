@@ -1,0 +1,11 @@
+klient:
+user@user.pl
+haslomaslo
+
+manager:
+manager@manager.pl
+haslomaslo
+
+administrator:
+admin@admin.pl
+haslomaslo

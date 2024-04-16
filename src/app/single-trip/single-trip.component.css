@@ -1,0 +1,133 @@
+a {
+  font-size: 30px;
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.trip-container {
+  text-align: center;
+  width: 70%;
+  margin: 10px auto 10px auto;
+  padding: 10px;
+  background-color: rgb(107, 142, 48);
+  height: auto;
+  position: relative;
+  border-radius: 20px;
+}
+
+.capacity {
+  margin: 5px;
+}
+
+#box {
+  width: 100%;
+}
+
+.title {
+  color: black;
+  margin: 0 10px 10px 10px;
+}
+
+.details {
+  font-size: 16px;
+  margin: 5px;
+}
+
+.country {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 5px;
+}
+
+.res {
+  font-size: inherit;
+  margin: 5px;
+}
+
+.dates {
+  font-weight: bold;
+  margin: 5px;
+}
+
+img {
+  width: 280px;
+  height: 280px;
+  margin: 0;
+  padding: 0;
+  object-fit: cover;
+  float: right;
+  border-radius: 50%;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.add_sub {
+  margin: 10px;
+  font-size: 30px;
+  color: white;
+  border: 0;
+  background-color: green;
+  width: 40px;
+  height: 40px;
+}
+.minus_sub {
+  margin: 10px;
+  font-size: 30px;
+  color: white;
+  border: 0;
+  background-color: green;
+  width: 40px;
+  height: 40px;
+}
+
+.ocena {
+  display: flex;
+  width: 270px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+#form-rev {
+  width: 50%;
+  height: auto;
+  padding: 10px;
+  margin: 10px auto;
+  background-color: rgb(121, 177, 61);
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.35);
+}
+
+.wyslij {
+  margin: 10px;
+}
+
+input {
+  padding: 7px;
+  font-size: 15px;
+  border: 0.5px solid gray;
+}
+
+textarea {
+  width: 90%;
+}
+
+.comment {
+  width: 50%;
+  height: auto;
+  padding: 10px;
+  margin: 20px auto;
+  background-color: rgb(163, 239, 82);
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.who {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+}
