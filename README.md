@@ -1,4 +1,6 @@
-# Zad7
+# Travel Agency Website
+
+This project was realized as a part of course "Intro to Web Development" at AGH UST.'
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.
 
